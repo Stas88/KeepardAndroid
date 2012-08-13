@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:background="@drawable/bitmap"
+	    android:paddingTop="16dp"
+	    android:paddingRight="16dp"
+	    android:paddingLeft="16dp"
+    >
+     		<TextView
+				android:id="@+id/name_entry"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_alignParentLeft="true"
+				android:textColor="@android:color/black"
+				android:textSize="20dip" />
+		  
+	       <TextView
+				android:id="@+id/description_entry"
+				android:layout_alignParentLeft="true"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_below="@+id/name_entry"
+				android:textColor="@android:color/black"
+				android:textSize="20dip" />
+	       
+	       <TextView
+				android:id="@+id/code_entry"
+				android:layout_alignParentLeft="true"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_below="@+id/description_entry"
+				android:textColor="@android:color/black"
+				android:textSize="20dip" />
+	       
+	       <TextView
+				android:id="@+id/ok"
+				android:layout_alignParentLeft="true"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+	            android:layout_alignParentBottom="true"
+	            android:layout_alignParentRight="true"
+				android:textColor="@android:color/black"
+			
+				android:text="Ok"
+				android:textSize="20dip" />
+	       
+	       <TextView
+				android:id="@+id/remove"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+	            android:layout_alignParentBottom="true"
+	            android:layout_alignParentLeft="true"
+				android:textColor="@android:color/black"
+				
+				android:text="Удалить"
+				android:textSize="20dip" />
+	       
+			<RelativeLayout
+					android:id="@+id/fr"
+					android:layout_width="fill_parent"
+					android:layout_height="60dp"
+					android:layout_alignParentBottom="true"
+		
+				>
+		
+			    <ImageView
+					android:id="@+id/left_button"
+					android:layout_width="fill_parent"
+					android:layout_height="wrap_content"
+					android:layout_toLeftOf="@+id/bl"
+					android:src="@drawable/left_bg"
+				/>
+			    
+				<ImageView
+					android:id="@+id/bl"
+					android:layout_width="128dp"
+					android:layout_height="wrap_content"
+					android:layout_centerHorizontal="true"
+					android:background="@drawable/logo_2"
+				/>
+				
+				<ImageView
+					android:id="@+id/right_button"
+					android:layout_width="fill_parent"
+					android:layout_height="wrap_content"
+					android:layout_toRightOf="@+id/bl"
+					android:src="@drawable/right_bg"
+					
+				/>
+				
+				<TextView
+				    android:id="@+id/myImageViewText"
+				    android:layout_width="wrap_content"
+				    android:layout_height="wrap_content"
+				    android:layout_alignLeft="@+id/right_button"
+				    android:layout_alignTop="@+id/right_button"
+				    android:layout_alignRight="@+id/right_button"
+				    android:layout_alignBottom="@+id/right_button"
+				    android:layout_margin="1dp"
+				    android:gravity="center"
+				    android:text="Удалить"
+				    android:textColor="@color/white" />
+				
+				<TextView
+				    android:id="@+id/myImageViewText1"
+				    android:layout_width="wrap_content"
+				    android:layout_height="wrap_content"
+				    android:layout_alignLeft="@+id/left_button"
+				    android:layout_alignTop="@+id/left_button"
+				    android:layout_alignRight="@+id/left_button"
+				    android:layout_alignBottom="@+id/left_button"
+				    android:layout_margin="1dp"
+				    android:gravity="center"
+				    android:text="Назад"
+				    android:textColor="@color/white" />
+	
+		</RelativeLayout>
+</RelativeLayout>

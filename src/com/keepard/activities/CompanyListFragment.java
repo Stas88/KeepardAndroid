@@ -45,7 +45,7 @@ public class CompanyListFragment extends SherlockListFragment {
         getListView().setCacheColorHint(Color.TRANSPARENT);
         little_up_animation = AnimationUtils.loadAnimation(getActivity(), R.anim.little_up_animation);
         layout_MainMenu = (FrameLayout) getActivity().findViewById( R.id.mainmenu);
-        layout_MainMenu.getForeground().setAlpha( 0);
+        layout_MainMenu.getForeground().setAlpha(0);
         
 	}
 

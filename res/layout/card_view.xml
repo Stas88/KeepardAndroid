@@ -1,30 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-	<RelativeLayout 
-		    	xmlns:android="http://schemas.android.com/apk/res/android"
-		        android:id="@+id/list_row"
-		        android:layout_width="fill_parent"
-		        android:layout_height="wrap_content"
-		        android:background="#00000000"
-	        >
-	
-		 <ImageView
-		   		android:id="@+id/card_image"
-		   		android:layout_width="match_parent"
-		   		android:layout_height="wrap_content"
-		   		android:layout_centerHorizontal="true"
-   			/>
-		 
-	  
-	       <ImageView
-		   		android:id="@+id/bl"
-		   		android:layout_width="fill_parent"
-		   		android:layout_height="60dp"
-		   		android:layout_alignParentBottom="true"
-		   		android:background="@drawable/bottom_line"
-	   	/>
+	<RelativeLayout
+		xmlns:android="http://schemas.android.com/apk/res/android"
+		android:id="@+id/list_row"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:background="#00000000"
+	>
+		
+	<ImageView
+		android:id="@+id/card_image"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_centerHorizontal="true"
+	    />
+		
+		<RelativeLayout
+			android:id="@+id/fr"
+			android:layout_width="fill_parent"
+			android:layout_height="60dp"
+			android:layout_alignParentBottom="true"
 
-	</RelativeLayout>
+		>
+		
+		    <ImageView
+				android:id="@+id/left_button"
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				android:layout_toLeftOf="@+id/bl"
+				android:src="@drawable/left_bg"
+				
+			/>
+		    
+			<ImageView
+				android:id="@+id/bl"
+				android:layout_width="128dp"
+				android:layout_height="wrap_content"
+				android:layout_centerHorizontal="true"
+				android:background="@drawable/logo_2"
+			/>
+			
+			<ImageView
+				android:id="@+id/right_button"
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				android:layout_toRightOf="@+id/bl"
+				android:src="@drawable/right_bg"
+				
+			/>
+			
+			<TextView
+			    android:id="@+id/myImageViewText"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:layout_alignLeft="@+id/right_button"
+			    android:layout_alignTop="@+id/right_button"
+			    android:layout_alignRight="@+id/right_button"
+			    android:layout_alignBottom="@+id/right_button"
+			    android:layout_margin="1dp"
+			    android:gravity="center"
+			    android:text="Удалить"
+			    android:textColor="@color/white" />
+			
+			<TextView
+			    android:id="@+id/myImageViewText1"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:layout_alignLeft="@+id/left_button"
+			    android:layout_alignTop="@+id/left_button"
+			    android:layout_alignRight="@+id/left_button"
+			    android:layout_alignBottom="@+id/left_button"
+			    android:layout_margin="1dp"
+			    android:gravity="center"
+			    android:text="Назад"
+			    android:textColor="@color/white" />
+	
+		</RelativeLayout>
+</RelativeLayout>
 	
     
         
