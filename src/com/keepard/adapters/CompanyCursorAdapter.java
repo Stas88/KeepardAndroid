@@ -41,7 +41,6 @@ public class CompanyCursorAdapter extends SimpleCursorAdapter {
 	      }
 	      if((position == (cursor.getCount() - 2))) {
 	    	  convertView = inflater.inflate(R.layout.add_list_item, null);
-
 	    	  super.getView(position, convertView, parent);
 	          return convertView;
 	      }  

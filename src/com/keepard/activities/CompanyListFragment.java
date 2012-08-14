@@ -21,6 +21,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.app.SherlockListFragment;
@@ -46,7 +47,6 @@ public class CompanyListFragment extends SherlockListFragment {
         little_up_animation = AnimationUtils.loadAnimation(getActivity(), R.anim.little_up_animation);
         layout_MainMenu = (FrameLayout) getActivity().findViewById( R.id.mainmenu);
         layout_MainMenu.getForeground().setAlpha(0);
-        
 	}
 
 	@Override
@@ -59,7 +59,7 @@ public class CompanyListFragment extends SherlockListFragment {
 	
 	@Override
 	public void onListItemClick(ListView l, View v, int position, long id) {
-		if (position != l.getCount() -1) {
+		if (position != l.getCount() -1 && position != l.getCount() -2) {
 			
 				Intent cardActivity = new Intent(getActivity(), CardActivity.class);
 			    Cursor c = ((CursorAdapter) l.getAdapter()).getCursor();
@@ -68,8 +68,6 @@ public class CompanyListFragment extends SherlockListFragment {
 			    cardActivity.putExtra("company", company);
 				startActivity(cardActivity);
 				
-		
-			
 				/*
 				View spaceshipImage = l;
 				Animation hyperspaceJumpAnimation = AnimationUtils.loadAnimation(getActivity(), R.anim.hyperspace_jump);
@@ -90,12 +88,12 @@ public class CompanyListFragment extends SherlockListFragment {
 					LayoutInflater inflater = (LayoutInflater)getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 					View dimmingView = inflater.inflate(R.layout.dimming_view, null);
 					((ViewGroup) v.getParent().getParent()).addView(dimmingView);
-					
 				}
 				*/
-			
-		} else {
-			//v.setEnabled(false);
+	    
+		} else if (position == l.getCount() -2) {
+			Intent add_card = new Intent(getActivity(), CardAddingActivity.class);
+			startActivity(add_card);
 		}
 	}
 	

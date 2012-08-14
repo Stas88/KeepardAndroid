@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="hello">Hello World, KeepardAndroidActivity!</string>
     <string name="app_name">KeepardAndroid</string>
-
+    <string name="delete">Удалить</string>
+    <string name="back">Назад</string>
+    <string name="edit">Изменить</string>
+    <string name="ok">Ок</string>
+    <string name="name">Имя</string>
+    <string name="description">Описание</string>
+    <string name="read_code">Считать код</string>
 </resources>

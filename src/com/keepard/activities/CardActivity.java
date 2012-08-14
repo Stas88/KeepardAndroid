@@ -3,11 +3,11 @@ package com.keepard.activities;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -22,7 +22,7 @@ import com.keepard.R;
 import com.keepard.adapters.CardPagerAdapter;
 import com.keepard.models.Company;
 
-public class CardActivity extends Activity implements OnClickListener{
+public class CardActivity extends FragmentActivity implements OnClickListener{
 	
 	private final String TAG = "CardActivity";
 	private LayoutInflater inflater;
@@ -85,6 +85,7 @@ public class CardActivity extends Activity implements OnClickListener{
 
 	
 
+	
 
 	public void onClick(View arg0) {
 		finish();

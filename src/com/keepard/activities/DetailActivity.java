@@ -17,10 +17,6 @@ public class DetailActivity extends SherlockFragmentActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.details_activity_layout);
 		getSupportActionBar().setDisplayShowHomeEnabled(false);
-		
-		
-		
-
 	}
 	
 	
@@ -30,8 +26,6 @@ public class DetailActivity extends SherlockFragmentActivity {
 		com.actionbarsherlock.view.MenuInflater inflater = getSupportMenuInflater();
 		inflater.inflate(R.menu.main_list_menu,  menu);
 		return super.onCreateOptionsMenu(menu);
-		
-		
 	}
 	
 	
