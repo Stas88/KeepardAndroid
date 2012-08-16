@@ -84,7 +84,7 @@ public class CardActivity extends FragmentActivity implements OnClickListener{
 	}
 
 	
-
+	
 	
 
 	public void onClick(View arg0) {

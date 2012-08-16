@@ -2,6 +2,7 @@ package util;
 
 import android.graphics.Bitmap;
 
+
 public class Util {
 
 	public static Bitmap ScaleBitmap(Bitmap bm, float scalingFactor) {
