@@ -3,10 +3,9 @@ package com.keepard.activities;
 import android.app.SearchManager;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
-import android.widget.EditText;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.ImageView;
 
 import com.actionbarsherlock.app.SherlockFragmentActivity;
@@ -16,12 +15,13 @@ import com.keepard.R;
 
 
 
+
 public class DetailActivity extends SherlockFragmentActivity {
 	
 	
 	private ImageView image;
 	private final static String TAG = "DetailActivity";
-	
+	LayoutInflater inflater = (LayoutInflater)this.getSystemService(this.LAYOUT_INFLATER_SERVICE);
 
 	
 	@Override
@@ -36,31 +36,39 @@ public class DetailActivity extends SherlockFragmentActivity {
 	      Log.d(TAG, "Search Query = " + query);
 		
 	    }
-	    
-
 	}
 	
 	
-	
-	@Override
+		@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		com.actionbarsherlock.view.MenuInflater inflater = getSupportMenuInflater();
-		inflater.inflate(R.menu.main_list_menu,  menu);
+		//View searchView = (View)inflater.inflate(R.layout.collapsible_edittext, null);
+		  menu.add("Search")
+          .setIcon(R.drawable.search_icon)
+          .setActionView(R.layout.collapsible_edittext)
+          .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS | MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW);
 		return super.onCreateOptionsMenu(menu);
 	}
 	
-
+	
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
+		Log.d(TAG, "onOptionsItemSelected 1");
+		onSearchRequested();
+		/*
 		if (item.getItemId() == R.id.menu_search) {
-			onSearchRequested();
+			Log.d(TAG, "onOptionsItemSelected 2");
+			this.getSupportActionBar().hide();
+			LayoutInflater inflater = (LayoutInflater)this.getSystemService(this.LAYOUT_INFLATER_SERVICE);
+			LinearLayout ll = (LinearLayout)findViewById(R.id.search_layout);
+			ll.setVisibility(View.VISIBLE);
 			Log.d(TAG, "onSearchRequested");
 			return true;
 		}
+		*/
 		return false;
 	}
 	
-
 	
-
+	
 } 

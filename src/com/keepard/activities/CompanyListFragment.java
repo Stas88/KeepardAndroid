@@ -1,6 +1,7 @@
 package com.keepard.activities;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -18,10 +19,13 @@ import android.widget.EditText;
 import android.widget.Filter;
 import android.widget.FilterQueryProvider;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.app.SherlockListFragment;
+import com.actionbarsherlock.view.MenuItem;
 import com.keepard.R;
 import com.keepard.adapters.CompanyCursorAdapter;
 import com.keepard.models.Card;
@@ -35,6 +39,7 @@ public class CompanyListFragment extends SherlockListFragment {
 	FrameLayout layout_MainMenu;
 	private EditText filterText = null;
 	ArrayAdapter<String> adapter = null;
+	private View fragmentView;
 
 
 	@Override
@@ -42,7 +47,6 @@ public class CompanyListFragment extends SherlockListFragment {
 		super.onActivityCreated(savedInstanceState);
         setUpAdapter();
         
-		
 		/*
 		String [] toppings = new String[3];
 		  toppings[0] = "Cheese";
@@ -62,11 +66,13 @@ public class CompanyListFragment extends SherlockListFragment {
 	    filterText.addTextChangedListener(filterTextWatcher);
 	}
 
+	
+
 	@Override
 	 public View onCreateView(LayoutInflater inflater, ViewGroup container,
 	   Bundle savedInstanceState) {
-		View v =  inflater.inflate(R.layout.list_example, container, false);
-	  return v;
+		fragmentView =  inflater.inflate(R.layout.list_example, container, false);
+	  return fragmentView;
 	 }
 	
 	@Override
@@ -123,17 +129,6 @@ public class CompanyListFragment extends SherlockListFragment {
       mAdapter = new CompanyCursorAdapter(getActivity(), R.layout.list_example_entry, cursor, columns, to);
       // set this adapter as your ListActivity's adapter
       this.setListAdapter(mAdapter);
-      mAdapter.setFilterQueryProvider(new FilterQueryProvider() {
-          public Cursor runQuery(CharSequence constraint) {
-              // Search for states whose names begin with the specified letters.
-        	  String con = constraint.toString();
-        	  Log.d(TAG, "constraint  + " + con);
-              Cursor cursor = getActivity().getContentResolver().query(Card.CONTENT_URI, new String[] {Card.CARD_ID, Card.NAME, Card.CODE, Card.DESCRIPTION, Card.CARD_IMAGE, Card.IMAGE}, Card.NAME + " LIKE ? ", new String[] { con }, null);
-              
-              return cursor;
-          }
-      });
-      
       mAdapter.setCursorToStringConverter(new CursorToStringConverter() {
           public String convertToString(android.database.Cursor cursor) {
         	 
@@ -144,6 +139,25 @@ public class CompanyListFragment extends SherlockListFragment {
               return str;
           }
       });
+      
+      mAdapter.setFilterQueryProvider(new FilterQueryProvider() {
+          public Cursor runQuery(CharSequence constraint) {
+              // Search for states whose names begin with the specified letters.
+        	  String con = constraint.toString();
+        	  Log.d(TAG, "constraint  + " + con);
+              Cursor cursor = getActivity().getContentResolver().query(Card.CONTENT_URI, new String[] {Card.CARD_ID, Card.NAME, Card.CODE, Card.DESCRIPTION, Card.CARD_IMAGE, Card.IMAGE}, Card.NAME + " LIKE ?" , new String[] { con+"%" }, null);
+              getActivity().startManagingCursor(cursor);
+              if (cursor.getCount() < 1) {
+            	  Log.d(TAG, "filtering cursor is empty ");
+              } else {
+            	  cursor.moveToFirst();
+            	  Log.d(TAG, "filtering cursor = " + cursor.getString(cursor.getColumnIndex("name")));
+              }
+              return cursor;
+          }
+      });
+      
+     
       
   }
   
@@ -181,5 +195,24 @@ public class CompanyListFragment extends SherlockListFragment {
 	    super.onDestroy();
 	    filterText.removeTextChangedListener(filterTextWatcher);
 	}
+	
+
 	   
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		Log.d(TAG, "onOptionsItemSelected 1");
+		if (item.getItemId() == R.id.menu_search) {
+			Log.d(TAG, "onOptionsItemSelected 2");
+			((SherlockFragmentActivity) getActivity()).getSupportActionBar().hide();
+			LayoutInflater inflater = (LayoutInflater)getActivity().getSystemService(getActivity().LAYOUT_INFLATER_SERVICE);
+			LinearLayout ll = (LinearLayout)fragmentView.findViewById(R.id.search_layout);
+			ll.setVisibility(View.VISIBLE);
+			Log.d(TAG, "onSearchRequested");
+			return true;
+		}
+		
+		return false;
+	}
+	
+	
 }

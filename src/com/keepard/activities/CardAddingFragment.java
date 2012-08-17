@@ -85,11 +85,7 @@ public class CardAddingFragment extends Fragment implements OnClickListener {
 
 	public void onClick(View v) {
 		  Log.d(TAG, "v.getId() = " + v.getId());
-		  if( read_code.getId() == ((Button)v).getId() ){
-			 Intent intent = new Intent("com.google.zxing.client.android.SCAN");
-            intent.putExtra("SCAN_MODE", "PRODUCT_MODE");
-            startActivityForResult(intent, 0);
-	      }
+		 
 	   
 		
 	}
