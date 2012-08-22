@@ -1,29 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-	<RelativeLayout 
+	<LinearLayout 
 	    xmlns:android="http://schemas.android.com/apk/res/android"
 	        android:id="@+id/list_row"
 	        android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
-	        android:paddingLeft="8dp"
-	        android:paddingRight="28dp"
+	        android:orientation="vertical"
+	        android:paddingTop="16dp"
 	        >
 	
 		  <TextView
 				android:id="@+id/name_entry"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:layout_alignParentRight="true"
-				android:textSize="20dip" />
+				android:layout_gravity="center_horizontal"
+				android:textStyle="bold"
+				android:textColor="#ffffff"
+				android:shadowColor="#5e241C"
+				android:shadowDx="0"
+		        android:shadowDy="0"
+		        android:shadowRadius="2"
+				android:textSize="20px" />
 		  
 	       <TextView
 				android:id="@+id/number_entry"
-				android:layout_alignParentRight="true"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:layout_below="@+id/name_entry"
-				android:textSize="20dip" />
+				android:textStyle="bold"
+				android:textColor="#bababa"
+				android:layout_marginTop="-3dp"
+				android:layout_gravity="center_horizontal"
+				android:shadowColor="#5e241C"
+				android:shadowDx="0"
+		        android:shadowDy="0"
+		        android:shadowRadius="2"
+				android:textSize="15dip" />
 	       
-	</RelativeLayout>
+	</LinearLayout>
 	
 	 		

@@ -33,7 +33,12 @@ public class CardActivity extends FragmentActivity implements OnClickListener{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		
+		setContentView(R.layout.card_view);
+		inflater = LayoutInflater.from(this);
+		cardView = inflater.inflate(R.layout.card_view, null);
+		initCardViews(cardView);
+		setContentView(cardView);
+		/*
 		ViewPager pager = new ViewPager(this);
 		List<View> pages = new ArrayList<View>();
 		CardPagerAdapter adapter = new CardPagerAdapter(pages);
@@ -41,26 +46,32 @@ public class CardActivity extends FragmentActivity implements OnClickListener{
 		pager.setCurrentItem(0);     
 		setContentView(pager);
 		
-		inflater = LayoutInflater.from(this);
+		
 		cardView = inflater.inflate(R.layout.card_view, null);
 		initCardViews(cardView);
 		pages.add(cardView);
 		
+		
 		cardInfoView = inflater.inflate(R.layout.card_info_layout, null);
 		initCardInfoViews(cardInfoView);
 		pages.add(cardInfoView);
-	    
+	    */
 	}
 	
 	private void initCardViews(View cardView) {
 		Company company = (Company) getIntent().getSerializableExtra("company");
 		ImageView cardImage = (ImageView) cardView.findViewById(R.id.card_image);
-	    int resID = this.getResources().getIdentifier("zdb_" + company.getName().toLowerCase() , "drawable", "com.keepard");
+		ImageView cardInfoImage = (ImageView) cardView.findViewById(R.id.card_image_data);
+	    //int resID = this.getResources().getIdentifier("zdb_" + company.getName().toLowerCase() , "drawable", "com.keepard");
 	    Log.d(TAG, "showName = " + company.getName().toLowerCase());
 	    Drawable drawable = this.getResources()
                 .getDrawable(R.drawable.zdb_vidivan1);
 	    Bitmap bm = ((BitmapDrawable) drawable).getBitmap();
 	    cardImage.setImageBitmap(bm);
+	    Drawable drawable1 = this.getResources()
+                .getDrawable(R.drawable.bg_grey);
+	    Bitmap bm1 = ((BitmapDrawable) drawable1).getBitmap();
+	    cardInfoImage.setImageBitmap(bm1);
 	    cardImage.setOnClickListener((android.view.View.OnClickListener) this);
 	    RelativeLayout fr = (RelativeLayout)cardView.findViewById(R.id.fr);
 	    ImageView left_button = (ImageView)fr.findViewById(R.id.left_button);

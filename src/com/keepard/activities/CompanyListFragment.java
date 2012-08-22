@@ -1,10 +1,11 @@
 package com.keepard.activities;
 
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v4.app.ListFragment;
+import android.support.v4.widget.CursorAdapter;
 import android.support.v4.widget.SimpleCursorAdapter.CursorToStringConverter;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -19,18 +20,13 @@ import android.widget.EditText;
 import android.widget.Filter;
 import android.widget.FilterQueryProvider;
 import android.widget.FrameLayout;
-import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.Toast;
 
-import com.actionbarsherlock.app.SherlockFragmentActivity;
-import com.actionbarsherlock.app.SherlockListFragment;
-import com.actionbarsherlock.view.MenuItem;
 import com.keepard.R;
 import com.keepard.adapters.CompanyCursorAdapter;
 import com.keepard.models.Card;
 
-public class CompanyListFragment extends SherlockListFragment {
+public class CompanyListFragment extends ListFragment {
 
 	private boolean isShowed = false;
 	private String TAG  = "CompanyListFragment";
@@ -57,16 +53,15 @@ public class CompanyListFragment extends SherlockListFragment {
 	                toppings);
         setListAdapter(adapter);
         */
-        setUpTitle();
+    
         getListView().setCacheColorHint(Color.TRANSPARENT);
         little_up_animation = AnimationUtils.loadAnimation(getActivity(), R.anim.little_up_animation);
-        layout_MainMenu = (FrameLayout) getActivity().findViewById( R.id.mainmenu);
-        layout_MainMenu.getForeground().setAlpha(0);
+        //layout_MainMenu = (FrameLayout) getActivity().findViewById( R.id.mainmenu);
+        //layout_MainMenu.getForeground().setAlpha(0);
         filterText = (EditText) getActivity().findViewById(R.id.search_box);
 	    filterText.addTextChangedListener(filterTextWatcher);
 	}
 
-	
 
 	@Override
 	 public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -77,42 +72,15 @@ public class CompanyListFragment extends SherlockListFragment {
 	
 	@Override
 	public void onListItemClick(ListView l, View v, int position, long id) {
-		if (position != l.getCount() -1 && position != l.getCount() -2) {
-				/*
-				Intent cardActivity = new Intent(getActivity(), CardActivity.class);
-			    Cursor c = ((CursorAdapter) l.getAdapter()).getCursor();
-			    c.moveToPosition(position);
-			    Company company = ParsingUtil.getCompanyFromCursor(c);
-			    cardActivity.putExtra("company", company);
-				startActivity(cardActivity);
-				
-				/*
-				View spaceshipImage = l;
-				Animation hyperspaceJumpAnimation = AnimationUtils.loadAnimation(getActivity(), R.anim.hyperspace_jump);
-				Animation little_up_animation = AnimationUtils.loadAnimation(getActivity(), R.anim.little_up_animation);
-				for (int i = 0; i < l.getChildCount(); i ++) {
-					View v1 = l.getChildAt(i);
-					if (!v1.equals(v)) { 
-						v1.startAnimation(hyperspaceJumpAnimation);
-						v1.setVisibility(View.GONE);
-					}
-					 Drawable drawable = getActivity().getResources()
-				                .getDrawable(R.drawable.card_full);
-					v.setBackgroundDrawable(drawable);
-					
-					v.setLayoutParams(new ListView.LayoutParams(ListView.LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT));
-					
-					//getActivity().getWindow().setFlags(flags, mask)
-					LayoutInflater inflater = (LayoutInflater)getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-					View dimmingView = inflater.inflate(R.layout.dimming_view, null);
-					((ViewGroup) v.getParent().getParent()).addView(dimmingView);
-				}
-				*/
-	    
-		} else if (position == l.getCount() -2) {
-			Intent add_card = new Intent(getActivity(), CardAddingActivity.class);
+		Cursor c = ((CursorAdapter) l.getAdapter()).getCursor();
+	    c.moveToPosition(position);
+	    if (c.getString(c.getColumnIndex("code")).equals("")) {
+	    	Intent add_card = new Intent(getActivity(), CardAddingActivity.class);
 			startActivity(add_card);
-		}
+	    } else {
+	    	//Intent show_card = new Intent(getActivity(), CardShowActivity.class);
+	    	//startActivity(show_card);
+	    }
 	}
 	
 
@@ -161,15 +129,7 @@ public class CompanyListFragment extends SherlockListFragment {
       
   }
   
-  private void setUpTitle() {
-	  String number = "";
-	  if (mAdapter != null && mAdapter.getCount() != 0) {
-		  number = "(" + String.valueOf(mAdapter.getCount()) + ")";
-	  } else {
-		  number = "(0)";
-	  }
-	  ((SherlockFragmentActivity)getActivity()).getSupportActionBar().setTitle("Мои дисконты " + number);
-  }
+
 
 
   private TextWatcher filterTextWatcher = new TextWatcher() {
@@ -198,21 +158,7 @@ public class CompanyListFragment extends SherlockListFragment {
 	
 
 	   
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		Log.d(TAG, "onOptionsItemSelected 1");
-		if (item.getItemId() == R.id.menu_search) {
-			Log.d(TAG, "onOptionsItemSelected 2");
-			((SherlockFragmentActivity) getActivity()).getSupportActionBar().hide();
-			LayoutInflater inflater = (LayoutInflater)getActivity().getSystemService(getActivity().LAYOUT_INFLATER_SERVICE);
-			LinearLayout ll = (LinearLayout)fragmentView.findViewById(R.id.search_layout);
-			ll.setVisibility(View.VISIBLE);
-			Log.d(TAG, "onSearchRequested");
-			return true;
-		}
-		
-		return false;
-	}
+	
 	
 	
 }
