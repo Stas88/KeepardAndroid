@@ -1,33 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-	<RelativeLayout
-		xmlns:android="http://schemas.android.com/apk/res/android"
-		android:id="@+id/list_row"
+	<LinearLayout
+	    xmlns:android="http://schemas.android.com/apk/res/android"
 		android:layout_width="fill_parent"
-		android:layout_height="wrap_content"
-		android:background="#00000000"
-	>
+		android:layout_height="fill_parent"
+		android:orientation="vertical"
+		android:background="@android:color/transparent"
+		
+		>
+		
 	<ScrollView
         android:id="@+id/scrollView1"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:background="#000000" >
-        
+        android:layout_weight="4"
+        android:background="@drawable/bg" >
+         
 	        <LinearLayout
 				xmlns:android="http://schemas.android.com/apk/res/android"
 				android:orientation="vertical"
 				android:layout_width="fill_parent"
 				android:layout_height="wrap_content"
-				
+				android:background="@drawable/bg"
 			>
 			
 				<ImageView
 					android:id="@+id/card_image"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:layout_centerHorizontal="true"
+					
 				    />
 				
 				
@@ -35,76 +36,15 @@
 					android:id="@+id/card_image_data"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:layout_centerHorizontal="true"
-					android:layout_below="@+id/card_image"
 				    />
 			</LinearLayout>
 		</ScrollView>
 		
 		
-		<RelativeLayout
-			android:id="@+id/fr"
-			android:layout_width="fill_parent"
-			android:layout_height="60dp"
-			android:layout_alignParentBottom="true"
-
-		>
+		<include layout="@layout/bottom_frame_layout"
+		    android:layout_gravity="bottom"/>		
 		
-		    <ImageView
-				android:id="@+id/left_button"
-				android:layout_width="fill_parent"
-				android:layout_height="wrap_content"
-				android:layout_toLeftOf="@+id/bl"
-				android:src="@drawable/left_bg"
-				
-			/>
-		    
-			<ImageView
-				android:id="@+id/bl"
-				android:layout_width="128dp"
-				android:layout_height="wrap_content"
-				android:layout_centerHorizontal="true"
-				android:background="@drawable/logo_2"
-			/>
-			
-			<ImageView
-				android:id="@+id/right_button"
-				android:layout_width="fill_parent"
-				android:layout_height="wrap_content"
-				android:layout_toRightOf="@+id/bl"
-				android:src="@drawable/right_bg"
-				
-			/>
-			
-			<TextView
-			    android:id="@+id/myImageViewText"
-			    android:layout_width="wrap_content"
-			    android:layout_height="wrap_content"
-			    android:layout_alignLeft="@+id/right_button"
-			    android:layout_alignTop="@+id/right_button"
-			    android:layout_alignRight="@+id/right_button"
-			    android:layout_alignBottom="@+id/right_button"
-			    android:layout_margin="1dp"
-			    android:gravity="center"
-			    android:text="@string/delete"
-			    android:textColor="@color/white" />
-			
-			<TextView
-			    android:id="@+id/myImageViewText1"
-			    android:layout_width="wrap_content"
-			    android:layout_height="wrap_content"
-			    android:layout_alignLeft="@+id/left_button"
-			    android:layout_alignTop="@+id/left_button"
-			    android:layout_alignRight="@+id/left_button"
-			    android:layout_alignBottom="@+id/left_button"
-			    android:layout_margin="1dp"
-			    android:gravity="center"
-			    android:text="@string/back"
-			    android:textColor="@color/white" />
-	
-		</RelativeLayout>
-		
-</RelativeLayout>
+</LinearLayout>
 	
     
         

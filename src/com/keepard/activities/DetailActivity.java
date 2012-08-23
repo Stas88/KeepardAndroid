@@ -1,5 +1,6 @@
 package com.keepard.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
@@ -12,6 +13,7 @@ import android.view.View.OnClickListener;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.keepard.R;
 
@@ -113,4 +115,25 @@ public class DetailActivity extends FragmentActivity implements OnClickListener 
 		}
 		
 	}
+	
+	
+	
+	   
+	public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+		Log.d(TAG, "onActivityResult resultCode = " + resultCode);
+		 
+		      if (resultCode == RESULT_OK) {
+		    	  Log.d(TAG, "onActivityResult 1");
+		         String contents = intent.getStringExtra("SCAN_RESULT");
+		         String format = intent.getStringExtra("SCAN_RESULT_FORMAT");
+		         Log.d(TAG, "onActivityResult 2");
+		         Log.d(TAG, "onActivityResult 3 + " + "ScanResult: " + contents + " Format: " + format);
+		        
+		         // Handle successful scan
+		      } else if (resultCode == RESULT_CANCELED) {
+		         // Handle cancel
+		      }
+		   }
+		
+	
 } 

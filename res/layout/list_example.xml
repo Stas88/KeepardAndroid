@@ -41,7 +41,7 @@
 							android:layout_marginRight="15dp"
 							android:layout_marginTop="6dp"
 							android:layout_alignParentRight="true"
-							android:background="@drawable/search_icon" />
+							android:background="@drawable/search_button_selector" />
 						
 						</LinearLayout>
 						
@@ -61,10 +61,11 @@
 							android:layout_marginRight="15dp"
 							android:layout_marginTop="6dp"
 							android:layout_alignParentRight="true"
-							android:background="@drawable/search_icon" />
+							android:background="@drawable/search_button_selector" />
 	    	    
 	    	   
 	       </RelativeLayout>
+	       
 		
 			
 			
@@ -84,46 +85,6 @@
 			/>
 			
 		
-					
-		  	<FrameLayout 
-			    android:layout_width="fill_parent"
-			    android:layout_height="wrap_content"
-				android:layout_weight="0"
-			     >
-
-				
-				
-			    <Button
-					android:id="@+id/left_button"
-					android:layout_width="wrap_content"
-      			    android:layout_height="match_parent"
-					android:layout_gravity="left"
-					android:background="@drawable/left_new"
-					android:textColor="@color/white"
-				/>
-			    
-				
-				
-				<Button
-					android:id="@+id/right_button"
-					android:layout_width="wrap_content"
-      			    android:layout_height="match_parent"
-					android:layout_gravity="right"
-					android:background="@drawable/right_new"
-					android:textColor="@color/white"
-				/>
-				
-				<ImageView
-					android:id="@+id/bl"
-					android:layout_width="wrap_content"
-			        android:layout_height="match_parent"
-			        android:layout_gravity="center"
-					android:background="@drawable/clasp"
-					
-				/>
-				
-				
-	
-		</FrameLayout>
-		
+			  <include layout="@layout/bottom_frame_layout"/>		
+		  	
 	</LinearLayout>

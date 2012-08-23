@@ -1,25 +1,22 @@
 package com.keepard.activities;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.view.ViewPager;
+import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
+import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import com.keepard.R;
-import com.keepard.adapters.CardPagerAdapter;
+import com.keepard.activities.dialogs.CardDeletingDialog;
+import com.keepard.activities.dialogs.CodeReadingDialog;
 import com.keepard.models.Company;
 
 public class CardActivity extends FragmentActivity implements OnClickListener{
@@ -73,12 +70,27 @@ public class CardActivity extends FragmentActivity implements OnClickListener{
 	    Bitmap bm1 = ((BitmapDrawable) drawable1).getBitmap();
 	    cardInfoImage.setImageBitmap(bm1);
 	    cardImage.setOnClickListener((android.view.View.OnClickListener) this);
-	    RelativeLayout fr = (RelativeLayout)cardView.findViewById(R.id.fr);
-	    ImageView left_button = (ImageView)fr.findViewById(R.id.left_button);
-	    ImageView right_button = (ImageView)fr.findViewById(R.id.right_button);
-	    left_button.setOnClickListener(this);
+	    Button left_view = (Button)cardView.findViewById(R.id.left_button);
+	    Button right_view = (Button)cardView.findViewById(R.id.right_button);
+	    left_view.setText(R.string.ok);
+	    right_view.setText(R.string.delete);
+	    left_view.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				CardActivity.this.finish();
+			}
+		});
+	    
+	    right_view.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				showCodeReadingDialog();
+			}
+		});
 	}
 	
+	
+	/*
 	private void initCardInfoViews(View cardView) {
 		Company company = (Company) getIntent().getSerializableExtra("company");
 		cardView.setOnClickListener((android.view.View.OnClickListener) this);
@@ -93,7 +105,7 @@ public class CardActivity extends FragmentActivity implements OnClickListener{
 	    ImageView right_button = (ImageView)fr.findViewById(R.id.right_button);
 	    left_button.setOnClickListener(this);
 	}
-
+	 */
 	
 	
 	
@@ -102,6 +114,11 @@ public class CardActivity extends FragmentActivity implements OnClickListener{
 		finish();
 	}
 
+	private void showCodeReadingDialog() {
+        FragmentManager fm = ((FragmentActivity) this).getSupportFragmentManager();
+        CardDeletingDialog codeReadingDialog = CardDeletingDialog.newInstance();
+        codeReadingDialog.show(fm, this.getString(R.string.read_code));
+    }
 
 	
 }

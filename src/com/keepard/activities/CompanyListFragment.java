@@ -70,18 +70,6 @@ public class CompanyListFragment extends ListFragment {
 	  return fragmentView;
 	 }
 	
-	@Override
-	public void onListItemClick(ListView l, View v, int position, long id) {
-		Cursor c = ((CursorAdapter) l.getAdapter()).getCursor();
-	    c.moveToPosition(position);
-	    if (c.getString(c.getColumnIndex("code")).equals("")) {
-	    	Intent add_card = new Intent(getActivity(), CardAddingActivity.class);
-			startActivity(add_card);
-	    } else {
-	    	//Intent show_card = new Intent(getActivity(), CardShowActivity.class);
-	    	//startActivity(show_card);
-	    }
-	}
 	
 
   

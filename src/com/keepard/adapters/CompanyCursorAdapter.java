@@ -5,6 +5,9 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+
 import android.support.v4.widget.SimpleCursorAdapter;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,6 +20,7 @@ import android.widget.TextView;
 import com.keepard.R;
 import com.keepard.activities.CardActivity;
 import com.keepard.activities.CardAddingActivity;
+import com.keepard.activities.dialogs.CodeReadingDialog;
 import com.keepard.models.Company;
 
 public class CompanyCursorAdapter extends SimpleCursorAdapter {
@@ -51,8 +55,9 @@ public class CompanyCursorAdapter extends SimpleCursorAdapter {
 				
 				@Override
 				public void onClick(View v) {
-					Intent add_card = new Intent(context, CardAddingActivity.class);
-					context.startActivity(add_card);
+					showCodeReadingDialog();
+					//Intent add_card = new Intent(context, CardAddingActivity.class);
+					//context.startActivity(add_card);
 				}
 			});
 		      
@@ -83,6 +88,11 @@ public class CompanyCursorAdapter extends SimpleCursorAdapter {
          return convertView;
 	}
 	
+	private void showCodeReadingDialog() {
+        FragmentManager fm = ((FragmentActivity) context).getSupportFragmentManager();
+        CodeReadingDialog codeReadingDialog = CodeReadingDialog.newInstance();
+        codeReadingDialog.show(fm, context.getString(R.string.read_code));
+    }
 
 
 }
