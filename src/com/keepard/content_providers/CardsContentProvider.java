@@ -30,8 +30,6 @@ public class CardsContentProvider extends ContentProvider {
 	
 	private static final String DATABASE_NAME = "keepard.sqlite";
 
-	private static final int DATABASE_VERSION = 1;
-	
 	private static final String CARDS_TABLE_NAME = "cards";
 	
 	public static final String AUTHORITY = "com.keepard.content_providers.CardsContentProvider";
@@ -45,7 +43,7 @@ public class CardsContentProvider extends ContentProvider {
 	private static class DatabaseHelper extends SQLiteOpenHelper {
 		
 		
-	    private static final int DATABASE_VERSION = 1;
+	    private static final int DATABASE_VERSION = 2;
 	    private static final String SP_KEY_DB_VER = "db_ver";
 	    private final Context mContext;
 
@@ -218,6 +216,10 @@ public class CardsContentProvider extends ContentProvider {
         c.setNotificationUri(getContext().getContentResolver(), uri);
         return c;
     }
+    
+
+ 
+
 
     @Override
     public int update(Uri uri, ContentValues values, String where, String[] whereArgs) {
@@ -245,6 +247,7 @@ public class CardsContentProvider extends ContentProvider {
         cardsProjectionMap.put(Card.DESCRIPTION, Card.DESCRIPTION);
         cardsProjectionMap.put(Card.IMAGE, Card.IMAGE);
         cardsProjectionMap.put(Card.NAME, Card.NAME);
+        cardsProjectionMap.put(Card.CODE_FORMAT, Card.CODE_FORMAT);
     }
 }
 

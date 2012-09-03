@@ -7,9 +7,10 @@ public class Company implements Serializable {
 	private int _ID;
 	private String name;
 	private String description;
-	private int code;
+	private long code;
 	private String picture;
 	private String card_picture;
+	private String code_format;
 
 	public Company() {}
 
@@ -37,11 +38,11 @@ public class Company implements Serializable {
 		this.description = description;
 	}
 
-	public int getCode() {
+	public long getCode() {
 		return code;
 	}
 
-	public void setCode(int code) {
+	public void setCode(long code) {
 		this.code = code;
 	}
 
@@ -61,11 +62,20 @@ public class Company implements Serializable {
 		this.card_picture = card_picture;
 	}
 
+	public String getCode_format() {
+		return code_format;
+	}
+
+	public void setCode_format(String code_format) {
+		this.code_format = code_format;
+	}
+
 	@Override
 	public String toString() {
 		return "Company [_ID=" + _ID + ", name=" + name + ", description="
 				+ description + ", code=" + code + ", picture=" + picture
-				+ ", card_picture=" + card_picture + "]";
+				+ ", card_picture=" + card_picture + ", code_format="
+				+ code_format + "]";
 	}
 
 	

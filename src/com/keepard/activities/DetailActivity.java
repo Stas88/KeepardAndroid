@@ -1,6 +1,9 @@
 package com.keepard.activities;
 
+import util.Constants;
+import util.ParsingUtil;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
@@ -13,9 +16,10 @@ import android.view.View.OnClickListener;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.keepard.R;
+import com.keepard.models.Card;
+import com.keepard.models.Company;
 
 
 
@@ -32,6 +36,7 @@ public class DetailActivity extends FragmentActivity implements OnClickListener 
 	private ImageView logo_word;
 	private ImageButton searchButton;
 	private ImageButton searchButton2;
+	private int currentId;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -87,7 +92,7 @@ public class DetailActivity extends FragmentActivity implements OnClickListener 
 
 
 	}
-	
+
 	private void setupViews() {
 		searchLayout = (LinearLayout)findViewById(R.id.search_layout);
 		logo_word = (ImageView)findViewById(R.id.logo_word);
@@ -117,23 +122,47 @@ public class DetailActivity extends FragmentActivity implements OnClickListener 
 	}
 	
 	
-	
-	   
 	public void onActivityResult(int requestCode, int resultCode, Intent intent) {
 		Log.d(TAG, "onActivityResult resultCode = " + resultCode);
-		 
-		      if (resultCode == RESULT_OK) {
-		    	  Log.d(TAG, "onActivityResult 1");
-		         String contents = intent.getStringExtra("SCAN_RESULT");
-		         String format = intent.getStringExtra("SCAN_RESULT_FORMAT");
-		         Log.d(TAG, "onActivityResult 2");
-		         Log.d(TAG, "onActivityResult 3 + " + "ScanResult: " + contents + " Format: " + format);
-		        
-		         // Handle successful scan
-		      } else if (resultCode == RESULT_CANCELED) {
-		         // Handle cancel
-		      }
-		   }
+	      if (resultCode == RESULT_OK) {
+	    	  Log.d(TAG, "onActivityResult 1");
+	         String contents = intent.getStringExtra("SCAN_RESULT");
+	         String format = intent.getStringExtra("SCAN_RESULT_FORMAT");
+	         Log.d(TAG, "onActivityResult 2");
+	         Log.d(TAG, "onActivityResult 3 + " + "ScanResult: " + contents + " Format: " + format);
+	         Log.d(TAG, "getCurrentId =  " + String.valueOf(getCurrentId()));
+	   	     Cursor cursor = this.getContentResolver().query(Card.CONTENT_URI, Card.projection,  Card.CARD_ID + " = ? ", new String [] {String.valueOf(getCurrentId())}, null);
+	   	     cursor.moveToFirst();
+	   	     Company company = ParsingUtil.getCompanyFromCursor(cursor);
+	   	     Intent show_card = new Intent(this, CardActivity.class);
+	   	     company.setCode(Long.valueOf(contents));
+	   	     show_card.setAction(Constants.ACTION_NEW_CARD);
+	   	     company.setCode_format(format);
+			 show_card.putExtra("company", company);
+			 Log.d(TAG, "company to save =  " + company);
+			 cursor.deactivate();
+			 startActivity(show_card);
+	         // Handle successful scan
+	      } else if (resultCode == RESULT_CANCELED) {
+	         // Handle cancel
+	      }
+	   }
 		
+	public void startScanning(int _id) {
+		Intent intent = new Intent("com.google.zxing.client.android.SCAN");
+        intent.putExtra("SCAN_MODE", "PRODUCT_MODE");
+        Log.d(TAG, "Start scanning!");
+        Log.d(TAG, "setCurrentId = " + _id);
+        setCurrentId(_id);
+        startActivityForResult(intent, 0);
+	}
 	
+	private int getCurrentId() {
+		return currentId;
+	}
+	
+	private void setCurrentId(int currentId) {
+		this.currentId = currentId;
+	}   
+
 } 

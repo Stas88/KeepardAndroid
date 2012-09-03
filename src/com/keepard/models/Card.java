@@ -26,4 +26,9 @@ public class Card {
 	
 	public static final String CARD_IMAGE = "card_image";
 	
+	public static final String CODE_FORMAT = "code_format";
+	
+	public static final String [] projection = new String[] {Card.CARD_ID, Card.NAME, Card.CODE, Card.DESCRIPTION, Card.CARD_IMAGE, Card.IMAGE, Card.CODE_FORMAT};
+
+	
 }

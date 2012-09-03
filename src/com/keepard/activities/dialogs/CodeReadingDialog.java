@@ -3,19 +3,26 @@ package com.keepard.activities.dialogs;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
-import android.widget.Toast;
 
 import com.keepard.R;
+import com.keepard.activities.DetailActivity;
 
 public class CodeReadingDialog extends DialogFragment {
-
-	private CodeReadingDialog() {}
 	
-	public static CodeReadingDialog newInstance() {
-		CodeReadingDialog frag = new CodeReadingDialog();
+	private int _id;
+	private  DetailActivity ownerActivity; 
+
+	private CodeReadingDialog() {
+	}
+	
+	private CodeReadingDialog(int id) {
+		_id = id;
+	}
+	
+	public static CodeReadingDialog newInstance(int id) {
+		CodeReadingDialog frag = new CodeReadingDialog(id);
         return frag;
     }
 
@@ -27,9 +34,9 @@ public class CodeReadingDialog extends DialogFragment {
         .setTitle(getActivity().getString(R.string.card_adding))
         .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
-            	Intent intent = new Intent("com.google.zxing.client.android.SCAN");
- 	            intent.putExtra("SCAN_MODE", "PRODUCT_MODE");
- 	            startActivityForResult(intent, 0);
+            	ownerActivity = (DetailActivity)getDialog().getOwnerActivity();
+            	ownerActivity.startScanning(_id);
+            	dialog.cancel();
             }
         })
         .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
@@ -39,6 +46,8 @@ public class CodeReadingDialog extends DialogFragment {
         });
         return builder.create();
     }
+
+	
 
 	/*
 	@Override

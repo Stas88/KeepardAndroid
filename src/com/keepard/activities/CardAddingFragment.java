@@ -41,7 +41,7 @@ public class CardAddingFragment extends Fragment implements OnClickListener {
 	
 	private void setUpSpinnerAdapter() {
 
-		  Cursor cursor = getActivity().getContentResolver().query(Card.CONTENT_URI, new String[] {Card.CARD_ID, Card.NAME, Card.CODE, Card.DESCRIPTION, Card.CARD_IMAGE, Card.IMAGE}, null, null, null);
+		  Cursor cursor = getActivity().getContentResolver().query(Card.CONTENT_URI, Card.projection, null, null, null);
 	      getActivity().startManagingCursor(cursor);
 		  // the desired columns to be bound
 	      ArrayAdapter adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item);
@@ -58,7 +58,7 @@ public class CardAddingFragment extends Fragment implements OnClickListener {
 	        sp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 	            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
 	            	String selected = sp.getSelectedItem().toString();
-	            	Cursor cursor = getActivity().getContentResolver().query(Card.CONTENT_URI, new String[] {Card.CARD_ID, Card.NAME, Card.CODE, Card.DESCRIPTION, Card.CARD_IMAGE, Card.IMAGE}, Card.NAME + " LIKE ? ", new String[] { selected }, null);
+	            	Cursor cursor = getActivity().getContentResolver().query(Card.CONTENT_URI, Card.projection, Card.NAME + " LIKE ? ", new String[] { selected }, null);
 	            	if(cursor.moveToFirst()){
 	            		descriptionView.setText(cursor.getString(cursor.getColumnIndex("description")));
 	            	}
