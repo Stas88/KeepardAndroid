@@ -13,4 +13,12 @@
     <string name="read_code_question">Вы действительно хотите считать код карты?</string>
     <string name="card_deleting">Удаление карты</string>
     <string name="card_deleting_question">Вы действительно хотите удалить карту?</string>
+    <string name="company_name">Имя компании:</string>
+    <string name="company_description">Описание:</string>
+    <string name="make_photo">Сделать фото карты</string>
+    <string name="adding_organization">Добавление организации</string>
+    <string name="add_organization">Добавление организации</string>
+    <string name="add_photo">Добавить фото</string>
+    <string name="add_code">Добавить код</string>
+    <string name="empty_fields">Необходимо свотографировать карту, считать код, заполнить поле имени и описания</string>
 </resources>

@@ -43,7 +43,7 @@ public class CardsContentProvider extends ContentProvider {
 	private static class DatabaseHelper extends SQLiteOpenHelper {
 		
 		
-	    private static final int DATABASE_VERSION = 2;
+	    private static final int DATABASE_VERSION = 5;
 	    private static final String SP_KEY_DB_VER = "db_ver";
 	    private final Context mContext;
 
@@ -69,6 +69,7 @@ public class CardsContentProvider extends ContentProvider {
             if (!databaseExists()) {
                 createDatabase();
             }
+            
         }
         
         private boolean databaseExists() {
@@ -184,13 +185,12 @@ public class CardsContentProvider extends ContentProvider {
         }
 
         SQLiteDatabase db = dbHelper.getWritableDatabase();
-        long rowId = db.insert(CARDS_TABLE_NAME, Card.DESCRIPTION, values);
+        long rowId = db.insert(CARDS_TABLE_NAME, null, values);
         if (rowId > 0) {
             Uri noteUri = ContentUris.withAppendedId(Card.CONTENT_URI, rowId);
             getContext().getContentResolver().notifyChange(noteUri, null);
             return noteUri;
         }
-
         throw new SQLException("Failed to insert row into " + uri);
     }
 
@@ -247,6 +247,7 @@ public class CardsContentProvider extends ContentProvider {
         cardsProjectionMap.put(Card.DESCRIPTION, Card.DESCRIPTION);
         cardsProjectionMap.put(Card.IMAGE, Card.IMAGE);
         cardsProjectionMap.put(Card.NAME, Card.NAME);
+        cardsProjectionMap.put(Card.ENG_NAME, Card.ENG_NAME);
         cardsProjectionMap.put(Card.CODE_FORMAT, Card.CODE_FORMAT);
     }
 }

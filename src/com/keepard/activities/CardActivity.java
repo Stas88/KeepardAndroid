@@ -1,14 +1,14 @@
 package com.keepard.activities;
 
-import util.Util;
 import android.content.ContentValues;
 import android.content.Intent;
-import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.util.Log;
@@ -83,8 +83,9 @@ public class CardActivity extends FragmentActivity {
 		TextView cardImageNumber = (TextView) cardView.findViewById(R.id.card_image_number);
 		//TextView cardTitle = (TextView) cardView.findViewById(R.id.card_title);
 		ImageView cardInfoImage = (ImageView) cardView.findViewById(R.id.card_image_data);
-	    int resID = this.getResources().getIdentifier("zdb_" + company.getName().toLowerCase() , "drawable", "com.keepard");
+	    int resID = this.getResources().getIdentifier("zdb_" + company.getEngName() , "drawable", "com.keepard");
 	    Log.d(TAG, "name = " + company.getName().toLowerCase());
+	    Log.d(TAG, "eng_name = " + company.getEngName());
 	    Log.d(TAG, "code = " + company.getCode());
 	    Log.d(TAG, "company = " + company);
 	    Log.d(TAG, "code_format = " + company.getCode_format());
@@ -100,20 +101,32 @@ public class CardActivity extends FragmentActivity {
 	    com.google.zxing.client.android.encode.QRCodeEncoder qrCodeEncoder = new com.google.zxing.client.android.encode.QRCodeEncoder(this, intent, smallerDimension, false);
 	    Bitmap bitmapOld = qrCodeEncoder.encodeAsBitmap();
 	    Bitmap bitmapOld1 = getResizedBitmap(bitmapOld);
-	    Bitmap bitmap = Util.getRoundedCornerBitmap(bitmapOld1, 10);
+	    //Bitmap bitmap = Util.getRoundedCornerBitmap(bitmapOld1, 10);
 	    //View view = (View)findViewById(R.layout.encode);
 	    //ImageView view1 = (ImageView)view.findViewById(R.id.image_view);
 	    //Drawable drawable1 = view1.getDrawable();
-	    Drawable drawable = this.getResources()
-               .getDrawable(resID);
-	    Bitmap bm = ((BitmapDrawable) drawable).getBitmap();
+	    Bitmap bm = null;
+	    if(resID == 0) {
+	    	 Log.d(TAG, "Path to image : " + Environment.getExternalStorageDirectory().toString() +
+             "/Keepard/KeepardImages/" + company.getName());
+	    	 Bitmap bitmap1 = BitmapFactory.decodeFile(
+             Environment.getExternalStorageDirectory().toString() +
+             "/Keepard/KeepardImages/" + company.getName());
+             Log.d(TAG, "Bitmap: " + bm);
+             bm = Bitmap.createScaledBitmap(bitmap1, 325, 212, true);
+	    }
+	    else {
+	    	 Drawable drawable = this.getResources()
+	                 .getDrawable(resID);
+	  	     bm = getResizedCardBitmap(((BitmapDrawable) drawable).getBitmap());
+	    }
 	    
 	    cardImage.setImageBitmap(bm);
 	    
 	    //Drawable drawable1 = this.getResources()
                 //.getDrawable(R.drawable.bg_grey);
 	    //Bitmap bm1 = ((BitmapDrawable) drawable1).getBitmap();
-	    cardInfoImage.setImageBitmap(bitmap);
+	    cardInfoImage.setImageBitmap(bitmapOld1);
 	    //cardTitle.setText(company.getName());
 	    cardImageNumber.setText(String.valueOf(company.getCode()));
 	    Button left_view = (Button)cardView.findViewById(R.id.left_button);
@@ -188,6 +201,24 @@ public class CardActivity extends FragmentActivity {
         
 
     }
-
+	
+	public Bitmap getResizedCardBitmap(Bitmap bm) {
+		Bitmap resizedBitmap = null;
+		if ( bm != null) {
+	        int width = bm.getWidth();
+	        int height = bm.getHeight();
+	        float scaleWidth = ((float) (width/1.05 )) / width;
+	        float scaleHeight = ((float)(height/1.1))  / height;
+	        // create a matrix for the manipulation
+	        Matrix matrix = new Matrix();
+	        // resize the bit map
+	        matrix.postScale(scaleWidth, scaleHeight);
+	        // recreate the new Bitmap
+	        resizedBitmap = Bitmap.createBitmap(bm, 0, 0, width, height,
+                matrix, false);
+		}
+        return resizedBitmap;
+        
+    }
 	
 }

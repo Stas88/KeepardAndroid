@@ -36,6 +36,7 @@ public class DetailActivity extends FragmentActivity implements OnClickListener 
 	private ImageView logo_word;
 	private ImageButton searchButton;
 	private ImageButton searchButton2;
+	private ImageButton addButton;
 	private int currentId;
 	
 	@Override
@@ -80,6 +81,7 @@ public class DetailActivity extends FragmentActivity implements OnClickListener 
 		searchLayout.setVisibility(View.VISIBLE);
 		logo_word.setVisibility(View.GONE);
 		searchButton.setVisibility(View.GONE);
+		addButton.setVisibility(View.GONE);
 		
 	}
 	
@@ -87,17 +89,21 @@ public class DetailActivity extends FragmentActivity implements OnClickListener 
 		searchLayout.setVisibility(View.GONE);
 		logo_word.setVisibility(View.VISIBLE);
 		searchButton.setVisibility(View.VISIBLE);
-		
-
-
-
+		addButton.setVisibility(View.VISIBLE);
 	}
+	
+	public  void startAddCompanyActivity(View v) {
+		Intent add_card = new Intent(this, CardAddingActivity.class);
+		startActivity(add_card);
+	}
+
 
 	private void setupViews() {
 		searchLayout = (LinearLayout)findViewById(R.id.search_layout);
 		logo_word = (ImageView)findViewById(R.id.logo_word);
 		searchButton = (ImageButton)findViewById(R.id.search_button);
 		searchButton2 = (ImageButton)findViewById(R.id.search_button2);
+		addButton = (ImageButton)findViewById(R.id.add_company_button);
 		searchButton.setOnClickListener(this);
 		searchButton2.setOnClickListener(this);
 		//TextView ok = (TextView)findViewById(R.id.myImageViewText1);
@@ -108,6 +114,7 @@ public class DetailActivity extends FragmentActivity implements OnClickListener 
 
 	@Override
 	public void onClick(View v) {
+		Log.d(TAG, "onClick");
 		switch (v.getId()) {
 		case R.id.search_button:
 			resetLayoutForSearch();
@@ -118,7 +125,6 @@ public class DetailActivity extends FragmentActivity implements OnClickListener 
 		    //imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
 			break;
 		}
-		
 	}
 	
 	

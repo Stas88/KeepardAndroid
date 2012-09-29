@@ -1,120 +1,218 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	    android:layout_width="match_parent"
-	    android:layout_height="wrap_content"
-	    android:background="@drawable/bitmap"
-	    android:paddingTop="16dp"
-	    android:paddingRight="16dp"
-	    android:paddingLeft="16dp"
-    >
-    	<LinearLayout 
-    	    android:id="@+id/data_layout"
-            android:layout_width="fill_parent" 
-            android:layout_height="wrap_content" 
-            android:gravity="center_horizontal"
-            android:orientation="vertical">
-            
-	   	    <LinearLayout 
-	            android:layout_width="fill_parent" 
-	            android:layout_height="56px" 
-	            android:orientation="horizontal">
-	            <TextView android:layout_height="wrap_content" 
-	                android:layout_width="wrap_content" 
-	                android:text="@string/name" 
-	                android:textColor="@android:color/black"
-	                android:id="@+id/name_textview" >
-	            </TextView>
-	           <Spinner
-				  android:id="@+id/spinner_id"
-				  android:layout_width="wrap_content"
-				  android:layout_height="wrap_content"
-				  android:layout_marginLeft="16dp"
-				/>
-	        </LinearLayout>
-	        
-	   	     <LinearLayout 
-	            android:layout_width="fill_parent" 
-	            android:layout_height="56px" 
-	            android:orientation="horizontal">
-	            <TextView android:layout_height="wrap_content" 
-	                android:layout_width="wrap_content" 
-	                android:text="@string/description" 
-	                android:textColor="@android:color/black"
-	                android:id="@+id/description_textview" >
-	            </TextView>
-	             <TextView android:layout_height="wrap_content" 
-	                android:layout_width="wrap_content" 
-	                android:textColor="@android:color/black"
-	                android:layout_marginLeft="16dp"
-	                android:id="@+id/description_result_textview" >
-	            </TextView>
-	        </LinearLayout>
-	      
-		    <Button
-		        android:id="@+id/read_code"
-		        android:gravity="left"
-		        android:layout_width="wrap_content"
-		        android:layout_height="wrap_content"
-		        android:text="@string/read_code" />
-        </LinearLayout>
 
-			<RelativeLayout
-					android:id="@+id/fr"
-					android:layout_width="fill_parent"
-					android:layout_height="60dp"
-					android:layout_alignParentBottom="true"
-				>
-		
-			    <ImageView
-					android:id="@+id/left_button"
-					android:layout_width="fill_parent"
-					android:layout_height="wrap_content"
-					android:layout_toLeftOf="@+id/bl"
-					android:src="@drawable/left_bg"
-				/>
-			    
-				<ImageView
-					android:id="@+id/bl"
-					android:layout_width="128dp"
-					android:layout_height="wrap_content"
-					android:layout_centerHorizontal="true"
-					android:background="@drawable/logo_2"
-				/>
-				
-				<ImageView
-					android:id="@+id/right_button"
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent"
+	    android:background="@drawable/bg"
+	    android:orientation="vertical"
+    >
+ 
+    
+      <RelativeLayout
+					android:id="@+id/top_layout"
 					android:layout_width="fill_parent"
 					android:layout_height="wrap_content"
-					android:layout_toRightOf="@+id/bl"
-					android:src="@drawable/right_bg"
+					android:background="@drawable/bg_up"
+					android:layout_weight="0"
+					>
+						
+			        <LinearLayout
+						android:id="@+id/search_layout"
+						android:layout_width="fill_parent"
+						android:layout_height="wrap_content"
+						android:visibility="gone"
+						android:orientation="horizontal">
+				    </LinearLayout>
+						
+		    		<ImageView
+						android:id="@+id/logo_word"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:gravity="left"
+						android:layout_marginLeft="17dp"
+						android:background="@drawable/logo_word"
+						android:layout_marginTop="16dp"
+					/>
+		    
+	       </RelativeLayout>
+	       
+       
+	    <ScrollView
+		    android:layout_width="fill_parent"
+		    android:layout_height="fill_parent"
+		    android:layout_weight="1"
+     		
+		>
+    
+    
+		    <LinearLayout 
+			    android:layout_width="fill_parent"
+			    android:layout_height="match_parent"
+			    android:orientation="vertical"
+			    android:paddingRight="16dp"
+			    android:paddingLeft="16dp"
+		    >
+					    		
+		        
+		    	<TextView
+		    	    android:id="@+id/adding_organization"
+		    	    android:layout_marginTop="16dp"
+		    	    android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_gravity="center_horizontal"
+					android:textStyle="bold"
+					android:textColor="#ffffff"
+					android:shadowColor="#5e241C"
+					android:shadowDx="0"
+			        android:shadowDy="0"
+			        android:shadowRadius="2"
+					android:textSize="20px" 
+			    	android:text="@string/adding_organization"
+		    	    >
+		    	</TextView>
+		    	
+		    	   <LinearLayout 
+					    android:layout_width="match_parent"
+					    android:layout_height="wrap_content"
+					    android:orientation="horizontal"
+					    android:layout_marginTop="16dp"
+					    android:layout_marginBottom="16dp"
+				    >
+				    
+					<LinearLayout
+					    android:layout_width="wrap_content"
+					    android:layout_height="wrap_content"
+					    android:orientation="vertical"
+					    android:layout_weight="2"
+					    android:paddingRight="4dp"
+				    >	
+				    
+				    	<com.keepard.views.RoundedImageView
+							android:id="@+id/card_image_adding"
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+					        android:visibility="gone"
+						 />
+				    	
+			    	     <ImageButton
+				        	android:id="@+id/make_photo_button"
+				        	android:layout_width="wrap_content"
+				        	android:layout_height="wrap_content"
+				        	android:onClick="takePhoto"
+				        	android:layout_weight="1"
+				        	android:background="@drawable/add_photo_button_selector" />
+			    	     
+			    	     <TextView
+				    	    android:id="@+id/add_photo_text"
+				    	    android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:textColor="@android:color/black"
+							android:layout_gravity="center_horizontal"
+							android:textSize="15dip"
+					    	android:text="@string/add_photo"
+				    	    >
+				    	 </TextView>
+				    	 
+			    	</LinearLayout>	
+			    	     
 					
-				/>
-				
-				<TextView
-				    android:id="@+id/myImageViewText"
-				    android:layout_width="wrap_content"
-				    android:layout_height="wrap_content"
-				    android:layout_alignLeft="@+id/right_button"
-				    android:layout_alignTop="@+id/right_button"
-				    android:layout_alignRight="@+id/right_button"
-				    android:layout_alignBottom="@+id/right_button"
-				    android:layout_margin="1dp"
-				    android:gravity="center"
-				    android:text="@string/back"
-				    android:textColor="@color/white" />
-				
-				<TextView
-				    android:id="@+id/myImageViewText1"
-				    android:layout_width="wrap_content"
-				    android:layout_height="wrap_content"
-				    android:layout_alignLeft="@+id/left_button"
-				    android:layout_alignTop="@+id/left_button"
-				    android:layout_alignRight="@+id/left_button"
-				    android:layout_alignBottom="@+id/left_button"
-				    android:layout_margin="1dp"
-				    android:gravity="center"
-				    android:text="@string/ok"
-				    android:textColor="@color/white" />
+					<LinearLayout
+					    android:layout_width="wrap_content"
+					    android:layout_height="wrap_content"
+					    android:orientation="vertical"
+					    android:layout_weight="2"
+					    android:paddingLeft="4dp"
+				    >	
+				    
+					     <LinearLayout
+					        android:id="@+id/card_image_linearlayout"
+							android:orientation="vertical"
+							android:layout_width="fill_parent"
+							android:layout_height="wrap_content"
+							android:layout_marginLeft="4dp"
+							android:layout_marginRight="4dp"
+							android:background="@drawable/rounded_corners"
+							android:visibility="gone"
+						>
+							<ImageView
+								android:id="@+id/card_image_data"
+								android:layout_width="match_parent"
+								android:layout_height="wrap_content"
+								android:layout_gravity="center_horizontal"
+								
+							    />
+							
+							<TextView
+								android:id="@+id/card_image_number"
+								android:layout_width="wrap_content"
+								android:layout_height="wrap_content"
+								android:layout_gravity="center_horizontal"
+								android:textColor="#000000"
+							    />
 	
-		</RelativeLayout>
-</RelativeLayout>
+						</LinearLayout>    
+						
+			    	     <ImageButton
+				        	android:id="@+id/read_code_button"
+				        	android:layout_width="wrap_content"
+				        	android:layout_height="wrap_content"
+				        	android:onClick="readCode"
+				        	android:layout_weight="1"
+				        	android:background="@drawable/add_code_button_selector" 
+				        	/>
+			    	     
+			    	     <TextView
+				    	    android:id="@+id/add_code_text"
+				    	    android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+                            android:textColor="@android:color/black"
+							android:layout_gravity="center_horizontal"
+			
+							android:textSize="15dip"
+					    	android:text="@string/add_code"
+				    	    >
+		    			</TextView>
+		    			
+			    	</LinearLayout>	
+		    	  
+		    	</LinearLayout>	
+		
+		    	<TextView
+		    	    android:id="@+id/company_name"
+		    	    android:layout_width="wrap_content"
+			    	android:layout_height="wrap_content"
+			    	android:text="@string/company_name"
+					android:textStyle="bold"
+					android:textColor="#bababa"
+					android:shadowColor="#5e241C"
+					android:shadowDx="0"
+			        android:shadowDy="0"
+			        android:shadowRadius="2"
+					android:textSize="15dip" 
+		    	    >
+		    	</TextView>
+		    	
+		    	<EditText
+		    	     android:id="@+id/company_name_value"
+		    	     android:layout_width="fill_parent"
+			    	 android:layout_height="wrap_content"
+			    	 android:hint="@string/company_name"
+			    	 android:singleLine="true"
+			    	 android:layout_marginTop="4dp"
+			    	 
+			    	 
+			    	 
+		    	    >
+		    	</EditText>
+		    	
+		  
+		    	
+			</LinearLayout>	
+			
+    	</ScrollView>
+    
+    	<include layout="@layout/bottom_frame_layout"
+		    android:layout_gravity="bottom"/>		
+    
+</LinearLayout>

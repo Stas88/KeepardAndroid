@@ -1,7 +1,6 @@
 package com.keepard.activities;
 
 import android.database.Cursor;
-import android.database.MergeCursor;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
@@ -13,7 +12,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Filter;
@@ -73,7 +71,7 @@ public class CompanyListFragment extends ListFragment {
   
   
   private void setUpAdapter() {
-	  Cursor cursor1 = getActivity().getContentResolver().query(Card.CONTENT_URI, Card.projection, null, null, Card.CODE );
+	  Cursor cursor1 = getActivity().getContentResolver().query(Card.CONTENT_URI, Card.projection, null, null, Card.CODE);
 	  //Cursor cursor2 = getActivity().getContentResolver().query(Card.CONTENT_URI, Card.projection, Card.CODE + " IS NULL", null, null);
 	  //Cursor [] cursors = new Cursor [] {cursor1, cursor2};
 	  //MergeCursor merge = new MergeCursor(cursors);

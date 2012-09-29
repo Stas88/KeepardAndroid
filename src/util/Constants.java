@@ -1,6 +1,5 @@
 package util;
 
-import android.content.Intent;
 
 public class Constants {
 

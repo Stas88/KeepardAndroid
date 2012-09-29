@@ -6,6 +6,7 @@ public class Company implements Serializable {
 	
 	private int _ID;
 	private String name;
+	private String engName;
 	private String description;
 	private long code;
 	private String picture;
@@ -46,6 +47,14 @@ public class Company implements Serializable {
 		this.code = code;
 	}
 
+	public void setEngName(String engName) {
+		this.engName = engName;
+	}
+	
+	public String getEngName() {
+		return engName;
+	}
+	
 	public String getPicture() {
 		return picture;
 	}

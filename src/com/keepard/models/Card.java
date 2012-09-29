@@ -18,6 +18,8 @@ public class Card {
 	
 	public static final String NAME = "name";
 	
+	public static final String ENG_NAME = "eng_name";
+	
 	public static final String DESCRIPTION = "description";
 
 	public static final String CODE = "code";
@@ -28,7 +30,7 @@ public class Card {
 	
 	public static final String CODE_FORMAT = "code_format";
 	
-	public static final String [] projection = new String[] {Card.CARD_ID, Card.NAME, Card.CODE, Card.DESCRIPTION, Card.CARD_IMAGE, Card.IMAGE, Card.CODE_FORMAT};
+	public static final String [] projection = new String[] {Card.CARD_ID, Card.NAME, Card.CODE, Card.DESCRIPTION, Card.CARD_IMAGE, Card.IMAGE, Card.CODE_FORMAT, Card.ENG_NAME};
 
 	
 }
